@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gram Panchayat System - Complete Architecture</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: #f8f9fa;
+            padding: 20px 40px;
+            border-bottom: 3px solid #667eea;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            padding: 10px 18px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid #667eea;
+            font-size: 0.85em;
+        }
+
+        .nav-links a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .nav-links a.overview {
+            background: #667eea;
+            color: white;
+            border-width: 3px;
+            font-size: 0.9em;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .diagram-section {
+            margin-bottom: 60px;
+            scroll-margin-top: 100px;
+        }
+
+        .diagram-section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .diagram-section p {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .diagram-wrapper {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+
+        .diagram-wrapper.large {
+            padding: 40px;
+            background: white;
+            border: 2px solid #e0e0e0;
+        }
+
+        .mermaid {
+            text-align: center;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        .module-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: #667eea;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 5px solid #48bb78;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box h3 {
+            color: #2d5016;
+            margin-bottom: 10px;
+        }
+
+        @media print {
+            nav {
+                position: static;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🏛️ Gram Panchayat Namunas System</h1>
+            <p class="subtitle">Complete System Architecture & Visual Diagrams</p>
+        </header>
+
+        <nav>
+            <div class="nav-links">
+                <a href="#hierarchy" class="overview">🌳 HIERARCHY DIAGRAM</a>
+                <a href="#modules">🔗 Module Interactions</a>
+                <a href="#dataflow">💫 Data Flow</a>
+                <a href="#architecture">🏗️ Architecture</a>
+                <a href="#financial">Financial (1-6)</a>
+                <a href="#revenue">Revenue (7-13)</a>
+                <a href="#operations">Operations</a>
+                <a href="#assets">Assets</a>
+            </div>
+        </nav>
+
+        <div class="content">
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">44</div>
+                    <div class="stat-label">Database Tables</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">33</div>
+                    <div class="stat-label">Namunas Covered</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Functional Modules</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Relationships</div>
+                </div>
+            </div>
+
+            <!-- HIERARCHY DIAGRAM -->
+            <div id="hierarchy" class="diagram-section">
+                <h2>🌳 Complete System Hierarchy Diagram</h2>
+                <p>Visual hierarchical structure showing all modules, sub-modules, and components of the Gram Panchayat
+                    Namunas System.</p>
+                <div class="diagram-wrapper large">
+                    <div class="mermaid">
+                        graph TD
+                        ROOT[🏛️ Gram Panchayat<br />Namunas System]
+
+                        ROOT --> CORE[🏛️ CORE INFRASTRUCTURE]
+                        ROOT --> FIN[💰 FINANCIAL MANAGEMENT<br />Namunas 1-6]
+                        ROOT --> REV[💵 REVENUE COLLECTION<br />Namunas 7-13]
+                        ROOT --> OPS[🏢 OPERATIONS<br />Namunas 15-18, 21, 24]
+                        ROOT --> ASSET[🏗️ ASSET MANAGEMENT<br />Namunas 19, 25-27]
+                        ROOT --> PROJ[🔨 PROJECT MANAGEMENT<br />Namuna 23]
+                        ROOT --> INV[💎 INVESTMENTS & LOANS<br />Namuna 20]
+
+                        %% CORE INFRASTRUCTURE
+                        CORE --> CORE_MASTER[Master Data]
+                        CORE --> CORE_SEC[Security]
+                        CORE --> CORE_SYS[System Services]
+
+                        CORE_MASTER --> CORE_M1[Gram Panchayats]
+                        CORE_MASTER --> CORE_M2[Financial Years]
+                        CORE_MASTER --> CORE_M3[Configurations]
+
+                        CORE_SEC --> CORE_S1[User Management]
+                        CORE_SEC --> CORE_S2[RBAC]
+                        CORE_SEC --> CORE_S3[Authentication]
+
+                        CORE_SYS --> CORE_SY1[Audit Logging]
+                        CORE_SYS --> CORE_SY2[Documents]
+                        CORE_SYS --> CORE_SY3[Notifications]
+
+                        %% FINANCIAL MANAGEMENT
+                        FIN --> FIN_BUDGET[Budget Management<br />Namuna 1]
+                        FIN --> FIN_REAPP[Re-appropriation<br />Namuna 2]
+                        FIN --> FIN_ANNUAL[Annual Accounts<br />Namunas 3-4]
+                        FIN --> FIN_CASH[Cashbook<br />Namuna 5]
+                        FIN --> FIN_CLASS[Classified Register<br />Namuna 6]
+
+                        FIN_BUDGET --> FIN_B1[Income Planning]
+                        FIN_BUDGET --> FIN_B2[Expenditure Planning]
+                        FIN_BUDGET --> FIN_B3[Approval Workflow]
+
+                        FIN_ANNUAL --> FIN_A1[Expenditure Account]
+                        FIN_ANNUAL --> FIN_A2[Receipt Account]
+
+                        %% REVENUE COLLECTION
+                        REV --> REV_REC[Receipt Management<br />Namuna 7]
+                        REV --> REV_TAX[Property Tax<br />Namunas 8-10]
+                        REV --> REV_MISC[Misc Demands<br />Namuna 11]
+                        REV --> REV_OCT[Octroi<br />Namunas 12-13]
+
+                        REV_REC --> REV_R1[Receipt Books]
+                        REV_REC --> REV_R2[Receipt Generation]
+                        REV_REC --> REV_R3[Tracking]
+
+                        REV_TAX --> REV_T1[Assessment - N8]
+                        REV_TAX --> REV_T2[Demand - N9]
+                        REV_TAX --> REV_T3[Bills - N10]
+
+                        REV_OCT --> REV_O1[Receipt - N12]
+                        REV_OCT --> REV_O2[Register - N13]
+
+                        %% OPERATIONS
+                        OPS --> OPS_PROC[Procurement<br />Namuna 15]
+                        OPS --> OPS_HR[HR & Payroll<br />Namunas 16, 24]
+                        OPS --> OPS_INV[Inventory<br />Namunas 17-18]
+                        OPS --> OPS_PETTY[Petty Cash<br />Namuna 21]
+
+                        OPS_PROC --> OPS_P1[Purchase Orders]
+                        OPS_PROC --> OPS_P2[Vendor Management]
+
+                        OPS_HR --> OPS_H1[Employee Registry - N16]
+                        OPS_HR --> OPS_H2[Salary Processing - N24]
+                        OPS_HR --> OPS_H3[Payroll]
+
+                        OPS_INV --> OPS_I1[Stamps - N17]
+                        OPS_INV --> OPS_I2[Receipt Books - N18]
+
+                        %% ASSET MANAGEMENT
+                        ASSET --> ASSET_MOV[Movable Assets<br />Namuna 19]
+                        ASSET --> ASSET_IMMOV[Immovable Property<br />Namuna 25]
+                        ASSET --> ASSET_ROAD[Roads<br />Namuna 26]
+                        ASSET --> ASSET_LAND[Acquired Lands<br />Namuna 27]
+
+                        ASSET_MOV --> ASSET_M1[Furniture]
+                        ASSET_MOV --> ASSET_M2[Electronics]
+                        ASSET_MOV --> ASSET_M3[Vehicles]
+                        ASSET_MOV --> ASSET_M4[Depreciation]
+
+                        ASSET_IMMOV --> ASSET_IM1[Buildings]
+                        ASSET_IMMOV --> ASSET_IM2[Land Holdings]
+                        ASSET_IMMOV --> ASSET_IM3[Valuation]
+
+                        ASSET_ROAD --> ASSET_R1[Registry]
+                        ASSET_ROAD --> ASSET_R2[Maintenance]
+                        ASSET_ROAD --> ASSET_R3[Condition]
+
+                        ASSET_LAND --> ASSET_L1[Register]
+                        ASSET_LAND --> ASSET_L2[Compensation]
+
+                        %% PROJECT MANAGEMENT
+                        PROJ --> PROJ_PLAN[Work Planning]
+                        PROJ --> PROJ_EXEC[Execution]
+                        PROJ --> PROJ_COST[Cost Management]
+
+                        PROJ_PLAN --> PROJ_P1[Proposals]
+                        PROJ_PLAN --> PROJ_P2[Estimates]
+
+                        PROJ_EXEC --> PROJ_E1[Contractors]
+                        PROJ_EXEC --> PROJ_E2[Progress Tracking]
+
+                        PROJ_COST --> PROJ_C1[Budget vs Actual]
+                        PROJ_COST --> PROJ_C2[Overrun Analysis]
+
+                        %% INVESTMENTS
+                        INV --> INV_INV[Investment Management]
+                        INV --> INV_DEP[Deposits & Loans<br />Namuna 20]
+
+                        INV_INV --> INV_I1[Shares]
+                        INV_INV --> INV_I2[Bonds]
+                        INV_INV --> INV_I3[Fixed Deposits]
+
+                        INV_DEP --> INV_D1[Loans Given]
+                        INV_DEP --> INV_D2[Deposits Received]
+                        INV_DEP --> INV_D3[Refunds]
+
+                        %% Styling
+                        classDef rootStyle fill:#667eea,stroke:#333,stroke-width:4px,color:#fff,font-size:16px
+                        classDef coreStyle fill:#667eea,stroke:#333,stroke-width:3px,color:#fff
+                        classDef finStyle fill:#48bb78,stroke:#333,stroke-width:3px,color:#fff
+                        classDef revStyle fill:#f6ad55,stroke:#333,stroke-width:3px,color:#fff
+                        classDef opsStyle fill:#4299e1,stroke:#333,stroke-width:3px,color:#fff
+                        classDef assetStyle fill:#9f7aea,stroke:#333,stroke-width:3px,color:#fff
+                        classDef projStyle fill:#ed64a6,stroke:#333,stroke-width:3px,color:#fff
+                        classDef invStyle fill:#38b2ac,stroke:#333,stroke-width:3px,color:#fff
+                        classDef subStyle fill:#e2e8f0,stroke:#333,stroke-width:2px
+                        classDef leafStyle fill:#fff,stroke:#666,stroke-width:1px
+
+                        class ROOT rootStyle
+                        class CORE,CORE_MASTER,CORE_SEC,CORE_SYS coreStyle
+                        class FIN,FIN_BUDGET,FIN_REAPP,FIN_ANNUAL,FIN_CASH,FIN_CLASS finStyle
+                        class REV,REV_REC,REV_TAX,REV_MISC,REV_OCT revStyle
+                        class OPS,OPS_PROC,OPS_HR,OPS_INV,OPS_PETTY opsStyle
+                        class ASSET,ASSET_MOV,ASSET_IMMOV,ASSET_ROAD,ASSET_LAND assetStyle
+                        class PROJ,PROJ_PLAN,PROJ_EXEC,PROJ_COST projStyle
+                        class INV,INV_INV,INV_DEP invStyle
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module Interaction Diagram -->
+            <div id="modules" class="diagram-section">
+                <h2>🔗 Module Interaction Diagram</h2>
+                <p>Shows how all 6 modules connect and share data across the system.</p>
+                <div class="diagram-wrapper">
+                    <div class="mermaid">
+                        graph TB
+                        subgraph CORE["🏛️ CORE INFRASTRUCTURE"]
+                        GP[Gram Panchayats<br />Master Data]
+                        FY[Financial Years]
+                        USERS[User Management<br />& RBAC]
+                        AUDIT[Audit Logs]
+                        end
+
+                        subgraph FIN["💰 FINANCIAL MANAGEMENT<br />Namunas 1-6"]
+                        BUDGET[Budget Planning<br />Namuna 1]
+                        REAPP[Re-appropriation<br />Namuna 2]
+                        ANNUAL[Annual Accounts<br />Namunas 3-4]
+                        CASHBOOK[General Cashbook<br />Namuna 5]
+                        CLASSIFIED[Classified Register<br />Namuna 6]
+                        end
+
+                        subgraph REV["💵 REVENUE COLLECTION<br />Namunas 7-13"]
+                        RECEIPT[Receipts<br />Namuna 7]
+                        PROPERTY[Property Tax<br />Namunas 8-10]
+                        MISC[Misc Demands<br />Namuna 11]
+                        OCTROI[Octroi<br />Namunas 12-13]
+                        end
+
+                        subgraph OPS["🏢 OPERATIONS<br />Namunas 15-18,21,24"]
+                        PURCHASE[Procurement<br />Namuna 15]
+                        HR[HR & Payroll<br />Namunas 16,24]
+                        INVENTORY[Inventory<br />Namunas 17-18]
+                        PETTY[Petty Cash<br />Namuna 21]
+                        end
+
+                        subgraph ASSET["🏗️ ASSET MANAGEMENT<br />Namunas 19,25-27"]
+                        MOVABLE[Movable Assets<br />Namuna 19]
+                        IMMOVABLE[Immovable Property<br />Namuna 25]
+                        ROADS[Roads<br />Namuna 26]
+                        LANDS[Acquired Lands<br />Namuna 27]
+                        end
+
+                        subgraph PROJ["🔨 PROJECTS<br />Namuna 23"]
+                        WORKS[Work Estimates<br />Namuna 23]
+                        end
+
+                        subgraph INV["💎 INVESTMENTS<br />Namuna 20"]
+                        INVEST[Investments]
+                        DEPOSITS[Deposits & Loans<br />Namuna 20]
+                        end
+
+                        GP ==> FIN
+                        GP ==> REV
+                        GP ==> OPS
+                        GP ==> ASSET
+                        GP ==> PROJ
+                        GP ==> INV
+                        FY ==> FIN
+                        FY ==> REV
+                        USERS ==> FIN
+                        USERS ==> REV
+                        USERS ==> OPS
+
+                        BUDGET --> CASHBOOK
+                        BUDGET --> REAPP
+                        CASHBOOK --> CLASSIFIED
+                        CASHBOOK --> ANNUAL
+
+                        PROPERTY --> RECEIPT
+                        MISC --> RECEIPT
+                        OCTROI --> RECEIPT
+                        RECEIPT ==> CASHBOOK
+
+                        PURCHASE --> CASHBOOK
+                        HR --> CASHBOOK
+                        PETTY --> CASHBOOK
+
+                        WORKS --> PURCHASE
+                        WORKS --> CASHBOOK
+
+                        PURCHASE --> MOVABLE
+                        PURCHASE --> IMMOVABLE
+
+                        CLASSIFIED -.->|Reconciliation| ANNUAL
+                        BUDGET -.->|Comparison| ANNUAL
+                        INVEST -.->|Returns| CASHBOOK
+                        DEPOSITS -.->|Refunds| CASHBOOK
+
+                        classDef coreStyle fill:#667eea,stroke:#333,stroke-width:3px,color:#fff
+                        classDef finStyle fill:#48bb78,stroke:#333,stroke-width:2px,color:#fff
+                        classDef revStyle fill:#f6ad55,stroke:#333,stroke-width:2px,color:#fff
+                        classDef opsStyle fill:#4299e1,stroke:#333,stroke-width:2px,color:#fff
+                        classDef assetStyle fill:#9f7aea,stroke:#333,stroke-width:2px,color:#fff
+                        classDef projStyle fill:#ed64a6,stroke:#333,stroke-width:2px,color:#fff
+                        classDef invStyle fill:#38b2ac,stroke:#333,stroke-width:2px,color:#fff
+
+                        class GP,FY,USERS,AUDIT coreStyle
+                        class BUDGET,REAPP,ANNUAL,CASHBOOK,CLASSIFIED finStyle
+                        class RECEIPT,PROPERTY,MISC,OCTROI revStyle
+                        class PURCHASE,HR,INVENTORY,PETTY opsStyle
+                        class MOVABLE,IMMOVABLE,ROADS,LANDS assetStyle
+                        class WORKS projStyle
+                        class INVEST,DEPOSITS invStyle
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>🎯 Key Integration Point: CASHBOOK (Namuna 5)</h3>
+                    <p>The <strong>General Cashbook</strong> acts as the central hub where ALL financial transactions
+                        from different modules converge. Every payment and receipt flows through the cashbook, ensuring
+                        complete financial tracking.</p>
+                </div>
+            </div>
+
+            <!-- Data Flow -->
+            <div id="dataflow" class="diagram-section">
+                <h2>💫 Data Flow Architecture</h2>
+                <p>How data moves through the system from input to output.</p>
+                <div class="diagram-wrapper">
+                    <div class="mermaid">
+                        flowchart LR
+                        subgraph INPUT["📥 DATA INPUT"]
+                        USER[User Entry]
+                        AUTO[Auto-Generated<br />Reports & Calculations]
+                        end
+
+                        subgraph PROCESSING["⚙️ TRANSACTION PROCESSING"]
+                        direction TB
+                        VALIDATE[Validation Layer<br />• Data types<br />• Required fields<br />• Business rules]
+                        BUSINESS[Business Logic<br />• Calculations<br />• Workflows<br />• Approvals]
+                        INTEGRATE[Cross-Module Integration<br />• Cashbook sync<br />• Balance updates<br />• Status
+                        changes]
+                        end
+
+                        subgraph STORAGE["💾 DATA STORAGE"]
+                        direction TB
+                        MASTER[Master Tables<br />• Gram Panchayats<br />• Users<br />• Financial Years]
+                        TRANS[Transaction Tables<br />• 40+ module tables<br />• Receipts, Bills<br />• Entries]
+                        AUDIT_STORE[Audit Tables<br />• All changes logged<br />• User actions<br />• Timestamps]
+                        end
+
+                        subgraph OUTPUT["📤 OUTPUT & REPORTING"]
+                        direction TB
+                        REPORTS[Reports & Analytics<br />• Financial statements<br />• Tax collection<br />• Custom
+                        reports]
+                        EXPORT[Export Documents<br />• PDFs<br />• Excel<br />• Certificates]
+                        NOTIF[Notifications<br />• Alerts<br />• Reminders<br />• Approvals]
+                        end
+
+                        USER --> VALIDATE
+                        AUTO --> VALIDATE
+                        VALIDATE --> BUSINESS
+                        BUSINESS --> INTEGRATE
+                        INTEGRATE --> MASTER
+                        INTEGRATE --> TRANS
+                        INTEGRATE --> AUDIT_STORE
+                        MASTER --> REPORTS
+                        TRANS --> REPORTS
+                        REPORTS --> EXPORT
+                        BUSINESS --> NOTIF
+
+                        style INPUT fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+                        style PROCESSING fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+                        style STORAGE fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+                        style OUTPUT fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logical Architecture -->
+            <div id="architecture" class="diagram-section">
+                <h2>🏗️ Logical System Architecture</h2>
+                <p>Complete 4-layer architecture showing technology stack and components.</p>
+                <div class="diagram-wrapper">
+                    <div class="mermaid">
+                        graph TB
+                        subgraph PRESENTATION["🖥️ PRESENTATION LAYER"]
+                        WEB[Web Application<br />React/Vue/Angular]
+                        MOBILE[Mobile App<br />React Native/Flutter]
+                        API[REST API Gateway<br />JSON responses]
+                        end
+
+                        subgraph APPLICATION["⚙️ APPLICATION LAYER"]
+                        direction TB
+
+                        subgraph AUTH["Authentication"]
+                        LOGIN[Login Service<br />JWT Tokens]
+                        RBAC[Role-Based Access<br />Permissions]
+                        end
+
+                        subgraph SERVICES["Business Services - All Modules"]
+                        FIN_SVC[💰 Financial<br />Namunas 1-6]
+                        REV_SVC[💵 Revenue<br />Namunas 7-13]
+                        OPS_SVC[🏢 Operations<br />Namunas 15-18,21,24]
+                        ASSET_SVC[🏗️ Assets<br />Namunas 19,25-27]
+                        PROJ_SVC[🔨 Projects<br />Namuna 23]
+                        INV_SVC[💎 Investments<br />Namuna 20]
+                        end
+
+                        subgraph INTEGRATION["Integration Layer"]
+                        WORKFLOW[Workflow Engine<br />Approvals & Routing]
+                        VALIDATION[Validation Engine<br />Business Rules]
+                        end
+                        end
+
+                        subgraph DATA["💾 DATA LAYER"]
+                        direction TB
+
+                        subgraph DATABASE["PostgreSQL Database - 44 Tables"]
+                        CORE_DB[(Core: 6 tables)]
+                        FIN_DB[(Financial: 10 tables)]
+                        REV_DB[(Revenue: 10 tables)]
+                        OPS_DB[(Operations: 9 tables)]
+                        ASSET_DB[(Assets: 4 tables)]
+                        OTHER_DB[(Projects & Inv: 5 tables)]
+                        end
+
+                        CACHE[(Redis Cache<br />Sessions & Data)]
+                        FILES[File Storage<br />Documents & PDFs]
+                        end
+
+                        subgraph INFRA["🔧 INFRASTRUCTURE"]
+                        MONITOR[Monitoring<br />Logs & Metrics]
+                        BACKUP[Backup & Recovery<br />Daily Backups]
+                        SECURITY[Security<br />Encryption & Firewall]
+                        end
+
+                        WEB --> API
+                        MOBILE --> API
+                        API --> LOGIN
+                        LOGIN --> RBAC
+                        RBAC --> SERVICES
+
+                        SERVICES --> VALIDATION
+                        VALIDATION --> WORKFLOW
+
+                        FIN_SVC --> FIN_DB
+                        REV_SVC --> REV_DB
+                        OPS_SVC --> OPS_DB
+                        ASSET_SVC --> ASSET_DB
+                        PROJ_SVC --> OTHER_DB
+                        INV_SVC --> OTHER_DB
+
+                        SERVICES --> CORE_DB
+                        SERVICES --> CACHE
+                        SERVICES --> FILES
+
+                        DATABASE --> BACKUP
+                        API --> MONITOR
+                        DATABASE --> SECURITY
+
+                        classDef layerStyle fill:#667eea,stroke:#333,stroke-width:3px,color:#fff
+                        classDef serviceStyle fill:#48bb78,stroke:#333,stroke-width:2px,color:#fff
+                        classDef dataStyle fill:#f6ad55,stroke:#333,stroke-width:2px
+
+                        class PRESENTATION,APPLICATION,DATA,INFRA layerStyle
+                    </div>
+                </div>
+            </div>
+
+            <!-- Financial ERD (keeping detailed ones) -->
+            <div id="financial" class="diagram-section">
+                <h2>💰 Financial Management Module (Namunas 1-6)</h2>
+                <span class="module-badge">Namuna 1: Budget</span>
+                <span class="module-badge">Namuna 2: Re-appropriation</span>
+                <span class="module-badge">Namuna 3-4: Annual Accounts</span>
+                <span class="module-badge">Namuna 5: Cashbook</span>
+                <span class="module-badge">Namuna 6: Classified Register</span>
+                <p>Complete financial management from budget planning to annual reporting.</p>
+                <div class="diagram-wrapper">
+                    <div class="mermaid">
+                        erDiagram
+                        gram_panchayats ||--o{ budgets : "has"
+                        financial_years ||--o{ budgets : "for"
+                        budgets ||--|{ budget_income_items : "contains"
+                        budgets ||--|{ budget_expenditure_items : "contains"
+                        gram_panchayats ||--o{ cashbook_entries : "maintains"
+                        gram_panchayats ||--o{ classified_accounts : "has"
+
+                        budgets {
+                        int id PK
+                        int gram_panchayat_id FK
+                        decimal total_income
+                        decimal total_expenditure
+                        }
+
+                        cashbook_entries {
+                        int id PK
+                        date entry_date
+                        varchar transaction_type
+                        decimal amount
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div id="revenue" class="diagram-section">
+                <h2>💵 Revenue Collection Module (Namunas 7-13)</h2>
+                <span class="module-badge">Namuna 7: Receipts</span>
+                <span class="module-badge">Namuna 8-10: Property Tax</span>
+                <span class="module-badge">Namuna 11: Misc Demands</span>
+                <span class="module-badge">Namuna 12-13: Octroi</span>
+                <p>Tax assessment, billing, collection, and receipt management.</p>
+                <div class="diagram-wrapper">
+                    <div class="mermaid">
+                        erDiagram
+                        gram_panchayats ||--o{ property_assessments : "maintains"
+                        property_assessments ||--o{ tax_demands : "generates"
+                        tax_demands ||--o{ tax_bills : "creates"
+                        tax_bills ||--o{ receipts : "payment_via"
+
+                        property_assessments {
+                        int id PK
+                        varchar property_no UK
+                        decimal total_tax
+                        }
+
+                        receipts {
+                        int id PK
+                        varchar receipt_no
+                        decimal amount
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div id="operations" class="diagram-section">
+                <h2>🏢 Operations Module (Namunas 15-18, 21, 24)</h2>
+                <span class="module-badge">Namuna 15: Purchases</span>
+                <span class="module-badge">Namuna 16,24: HR & Payroll</span>
+                <p>Day-to-day operations including procurement and payroll.</p>
+                <div class="diagram-wrapper">
+                    <div class="mermaid">
+                        erDiagram
+                        gram_panchayats ||--o{ employees : "employs"
+                        employees ||--o{ salary_payments : "receives"
+                        gram_panchayats ||--o{ purchases : "makes"
+                        purchases ||--|{ purchase_items : "contains"
+
+                        employees {
+                        int id PK
+                        varchar employee_code UK
+                        varchar full_name
+                        }
+
+                        salary_payments {
+                        int id PK
+                        int month
+                        decimal net_salary
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div id="assets" class="diagram-section">
+                <h2>🏗️ Asset Management Module (Namunas 19, 25-27)</h2>
+                <span class="module-badge">Namuna 19: Movable Assets</span>
+                <span class="module-badge">Namuna 25: Immovable Property</span>
+                <span class="module-badge">Namuna 26: Roads</span>
+                <span class="module-badge">Namuna 27: Acquired Lands</span>
+                <p>Complete asset lifecycle management and infrastructure tracking.</p>
+                <div class="diagram-wrapper">
+                    <div class="mermaid">
+                        erDiagram
+                        gram_panchayats ||--o{ movable_assets : "owns"
+                        gram_panchayats ||--o{ immovable_properties : "owns"
+                        gram_panchayats ||--o{ roads : "maintains"
+                        gram_panchayats ||--o{ acquired_lands : "acquired"
+
+                        movable_assets {
+                        int id PK
+                        text asset_description
+                        decimal current_value
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer>
+            <p><strong>Gram Panchayat Namunas System</strong> | Visual Architecture v1.0</p>
+            <p style="margin-top: 10px; opacity: 0.8;">44 Tables • 33 Namunas • 6 Modules • Complete Hierarchy</p>
+        </footer>
+    </div>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                primaryColor: '#667eea',
+                primaryTextColor: '#fff',
+                primaryBorderColor: '#667eea',
+                lineColor: '#764ba2',
+                secondaryColor: '#f8f9fa',
+                tertiaryColor: '#fff'
+            },
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            },
+            er: {
+                useMaxWidth: true
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('.nav-links a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

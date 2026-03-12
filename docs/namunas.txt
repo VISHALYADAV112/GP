@@ -1,0 +1,388 @@
+Here is the complete, consolidated list of all **Namunas (Forms)** identified from the document scans you provided.
+
+### **Namuna 1: Village Panchayat Budget Estimate**
+
+**(नमुना १: ग्रामपंचायत अंदाजपत्रक - Grampanchayat Andajpatrak)**
+*The master financial plan split into Income and Expenditure.*
+
+**Table A: Income Side (जमेची बाजू)**
+
+* **1. Serial No.** (अनु. क्र.)
+* **2. Head of Receipt** (जमेचे शीर्षक)
+* **3. Actual Receipts of Previous Year** (सन .. या वर्षासाठी मागील वर्षाची प्रत्यक्ष जमा)
+* **4. Sanctioned Budget Estimate for Current Year** (चालू वर्षासाठी मंजूर केलेली अंदाजे रक्कम)
+* **5. Revised Estimate for Current Year** (सन .. या वर्षातील सुधारित रक्कम)
+* **6. Budget Estimate for Ensuing Year** (सन .. या वर्षासाठी अंदाजे रक्कम)
+
+**Table B: Expenditure Side (खर्चाची बाजू)**
+
+* **7. Head of Expenditure** (खर्चाचे शीर्षक)
+* **8. Budget Estimate for Year** (सन .. या वर्षाचा पंचायतीचा अंदाजेला खर्च)
+* **9. Sanctioned Budget Estimate** (मंजूर केलेली अंदाजे रक्कम)
+* **10. Actual Expenditure of Previous Year** (मागील वर्षाचा प्रत्यक्ष खर्च)
+* **11. Actual Expenditure of Current Year** (चालू वर्षाचा प्रत्यक्ष खर्च)
+* **12. Remarks** (शेरा)
+
+---
+
+### **Namuna 2: Statement of Re-appropriation**
+
+**(नमुना २: पुनर्विनियोजन व वाटणी यांचे विवरणपत्र - Punarviniyojan va Vatani Yanche Vivaranpatra)**
+*Used to transfer funds from one budget head to another.*
+
+**FROM (पासून)**
+
+* **1. Serial No.** (अनुक्रमांक)
+* **2. Major Head** (मुख्य सदर)
+* **3. Minor Head** (पोट सदर)
+* **4. Budget Item No.** (अंदाजपत्रकातील बाब)
+* **5. Amount** (रक्कम)
+
+**TO (पर्यंत)**
+
+* **6. Major Head** (मुख्य सदर)
+* **7. Minor Head** (पोट सदर)
+* **8. Works/Services** (कामे, सेवा इत्यादी)
+* **9. Amount** (रक्कम)
+* **10. Remarks** (शेरा)
+
+---
+
+### **Namuna 3: Annual Account of Expenditure**
+
+**(नमुना ३: खर्चाचा वार्षिक हिशोब - Kharchacha Varshik Hishob)**
+*Reports actual spending against the budget categories.*
+
+* **1. Department** (विभाग)
+* **2. District** (जिल्हा)
+* **3. Opening Balance** (सुरुवातीची शिल्लक)
+* **Rows:** Lists all expenditure heads (e.g., General Admin, Water Supply) matching Namuna 1.
+
+---
+
+### **Namuna 4: Annual Account of Receipts**
+
+**(नमुना ४: जमेचा वार्षिक हिशोब - Jamecha Varshik Hishob)**
+*Reports actual income collected against the budget categories.*
+
+* **1. Department** (विभाग)
+* **2. District** (जिल्हा)
+* **Rows:** Lists all income heads (e.g., Land Revenue, Taxes) matching Namuna 1.
+
+---
+
+### **Namuna 5: General Cashbook**
+
+**(नमुना ५: सामान्य रोखवही - Samanya Rokhvahi)**
+*The daily register of all money coming in and going out.*
+
+**Receipt Side (जमा)**
+
+* **1. Date** (महिना व तारीख)
+* **2. Serial No.** (अनुक्रमांक)
+* **3. Received From** (कोणाकडून मिळाल्या)
+* **4. Receipt No.** (पावती क्रमांक)
+* **5. Head of Account** (हिशोबाचे सदर)
+* **6. Amount** (रक्कम)
+
+**Payment Side (नावे)**
+
+* **1. Date** (महिना व तारीख)
+* **2. Serial No.** (अनुक्रमांक)
+* **3. Paid To/Details** (कोणास दिले / खर्चाचा तपशील)
+* **4. Voucher No.** (व्हाऊचर क्रमांक)
+* **5. Head of Account** (हिशोबाचे सदर)
+* **6. Amount** (रक्कम)
+* **7. Daily Total** (एकूण रक्कम)
+* **8. Signature** (सही)
+
+---
+
+### **Namuna 6: Classified Register**
+
+**(नमुना ६: वर्गीकरण केलेले हिशोब - Vargikaran Kelele Hishob)**
+*Sorts daily cashbook entries into specific budget heads.*
+
+* **Header:** Head of Account (हिशोबाचे सदर)
+* **Header:** Budget Grant (अंदाजपत्रकातील अनुदान)
+* **Columns 1-31:** Dates (तारखा)
+* **Total for Month** (महिन्याबद्दलची एकूण रक्कम)
+* **Progressive Total** (मागील महिन्यांच्या अखेरपर्यंतची एकूण रक्कम)
+
+---
+
+### **Namuna 7: General Receipt**
+
+**(नमुना ७: सामान्य पावती - Samanya Pavti)**
+*The standard receipt given to citizens for payments.*
+
+* **Book No.** (पुस्तक क्रमांक)
+* **Receipt No.** (पावती क्रमांक)
+* **Date** (दिनांक)
+* **Received From** (कडून)
+* **On Account of** (च्या खाती रक्कम रुपये)
+* **Amount** (रक्कम - अक्षरी व अंकी)
+
+---
+
+### **Namuna 8: Assessment List (Tax Register)**
+
+**(नमुना ८: कर आकारणीची यादी - Kar Aakaranichi Yadi)**
+*Used to calculate property tax on buildings and lands.*
+
+* **1. Serial No.** (अनुक्रमांक)
+* **2. Street Name** (रस्त्याचे नाव)
+* **3. Property No.** (मालमत्ता क्रमांक)
+* **4. Property Description** (मालमत्तेचे वर्णन)
+* **5. Owner's Name** (मालकाचे नाव)
+* **6. Occupier's Name** (भोगवटा करणाऱ्याचे नाव)
+* **7. Annual Value** (वार्षिक भाडे मूल्य)
+* **8. Tax Amount** (कर)
+* **9. Total Tax** (एकूण कर)
+* **10. Final Assessment** (आकारणी केलेल्या कराची रक्कम)
+
+---
+
+### **Namuna 9: Register of Demand**
+
+**(नमुना ९: मागणीचे नोंदणीपुस्तक - Maganiche Nondnipustak)**
+*Tracks who owes what tax (Past Arrears + Current Year).*
+
+* **1. Circle** (सर्कल)
+* **2. Property No.** (मालमत्ता क्रमांक)
+* **3. Name** (नाव)
+* **4. Arrears (Past Due)** (मागील - कर / फी)
+* **5. Current Year Demand** (चालू - कर)
+* **6. Total Demand** (एकूण मागणी)
+
+---
+
+### **Namuna 10: Tax Bill**
+
+**(नमुना १०: कराबद्दल पावती / बिल - Karabaddal Pavti / Bill)**
+*The formal bill sent to citizens.*
+
+* **Bill No.** (पावती क्रमांक)
+* **Name** (श्री. रा. रा.)
+* **Details:** Bill Number, Year, Amount.
+* **Notice Text:** "Notice is hereby given to pay..."
+
+---
+
+### **Namuna 11: Register of Miscellaneous Demands**
+
+**(नमुना ११: किरकोळ मागणीचे पुस्तक - Kirkol Maganiche Pustak)**
+*Tracks one-time fees (fines, rent, etc.).*
+
+* **1. Serial No.** (अनुक्रमांक)
+* **2. Name of Payer** (ज्याने रक्कम द्यावयाची त्याचे नाव)
+* **3. Nature of Demand** (मागणीचे स्वरूप)
+* **4. Authority** (अधिकार)
+* **5. Demand Amount** (मागणी - हप्ता / एकूण)
+* **6. Recovery** (वसूल झालेली रक्कम - पावती क्र. / रक्कम)
+* **7. Balance** (शिल्लक)
+
+---
+
+### **Namuna 12: Octroi Receipt**
+
+**(नमुना १२: चुंगीची पावती - Chungichi Pavti)**
+*Receipt for tax on goods entering the village.*
+
+* **Naka** (नाका)
+* **Receipt No.** (पावती क्रमांक)
+* **Goods Name** (मालाचे नाव)
+* **Weight/Count** (वजन/संख्या)
+* **Value** (किंमत)
+* **Tax Amount** (चुंगीची रक्कम)
+
+---
+
+### **Namuna 13: Octroi Collection Register**
+
+**(नमुना १३: चुंगी वसुलीचे नोंदणी पुस्तक - Chungi Vasuliche Nondani Pustak)**
+*Daily log of Octroi collected.*
+
+* **1. Challan No.** (चलन क्रमांक)
+* **2. Date** (तारीख)
+* **3. Receipt No.** (पावती क्रमांक)
+* **4. Importer Name** (आयात करणाऱ्याचे नाव)
+* **5. Goods Description** (मालाचे वर्णन)
+* **6. Value/Weight** (किंमत / वजन)
+* **7. Rate** (दर)
+* **8. Amount** (चुंगीची रक्कम)
+
+*(Note: Namuna 14 is missing from the provided pages).*
+
+---
+
+### **Namuna 15: Register of Purchases**
+
+**(नमुना १५: विकत घेतलेल्या वस्तूंचे नोंदणी पुस्तक - Vikat Ghetlelya Vastunche Nondani Pustak)**
+*Tracks items bought by the Panchayat.*
+
+* **1. Article Name** (वस्तूचे नाव)
+* **2. Quantity** (परिमाण)
+* **3. Rate** (दर)
+* **4. Unit** (युनिट)
+* **5. Amount** (रक्कम)
+* **6. Bill Details** (बिलात दर्शविलेले दर)
+* **7. Payment Details** (व्हाऊचर नं. / रक्कम)
+
+---
+
+### **Namuna 16: Register of Staff Salaries**
+
+**(नमुना १६: वेतनाचे नोंदणीपुस्तक - Vetnache Nondnipustak)**
+*Payroll register for employees.*
+
+* **1. Employee Name** (नेमणुकीचे नाव)
+* **2. Pay Scale** (वेतनमान)
+* **3. Period** (पासून... पर्यंत)
+* **4. Allowances** (पगार / महागाई भत्ता / घरभाडे भत्ता)
+* **5. Deductions** (बचत / कपात - पी.एफ. / व्यवसाय कर)
+* **6. Net Pay** (प्रत्यक्ष दिलेली रक्कम)
+* **7. Signature** (पैसे घेणाऱ्याची सही)
+
+---
+
+### **Namuna 17: Stamp Account**
+
+**(नमुना १७: तिकिटांचा हिशोब - Tikitancha Hishob)**
+*Tracks postage stamps inventory.*
+
+* **1. Date** (तारीख)
+* **2. Stamps Received** (मिळालेली तिकिटे - प्रमाणक / किंमत)
+* **3. Stamps Used** (लावलेली तिकिटे - पत्र नंबर / किंमत)
+* **4. Balance** (रोजची शिल्लक)
+
+---
+
+### **Namuna 18: Receipt Book Register**
+
+**(नमुना १८: पावती पुस्तके साठ्याचा हिशोब - Pavti Pustake Sathyacha Hishob)**
+*Inventory of blank receipt books.*
+
+* **1. Date** (तारीख)
+* **2. Opening Stock** (आरंभीची शिल्लक)
+* **3. Received Stock** (मिळालेल्या वस्तू)
+* **4. Total** (एकूण)
+* **5. Issued To** (कोणास दिले)
+* **6. Closing Stock** (शिल्लक)
+
+---
+
+### **Namuna 19: Dead Stock Register**
+
+**(नमुना १९: डेडस्टॉक / जंगम मालमत्ता नोंदणीपुस्तक - Deadstock / Jangam Malmatta Nondnipustak)**
+*Asset inventory (Furniture, Computers, etc.).*
+
+* **1. Serial No.** (अनुक्रमांक)
+* **2. Description** (वस्तूचे वर्णन)
+* **3. Purchase Authority** (वस्तू खरेदीबद्दल आधार)
+* **4. Quantity** (संख्या)
+* **5. Price** (किंमत)
+* **6. Signature** (सही)
+* **7. Disposal** (वस्तूचा निकाल - तारीख / रक्कम / शेरा)
+
+---
+
+### **Namuna 20: Register of Deposits and Loans**
+
+**(नमुना २०: कर्जाऊ दिलेल्या / अनामत ठेवलेल्या रकमांचे नोंदणीपुस्तक)**
+*Tracks loans given and deposits held.*
+
+* **1. Date** (महिना आणि तारीख)
+* **2. Name** (इसमाचे नाव)
+* **3. Particulars** (तपशील)
+* **4. Receipt No.** (पावती / प्रमाणक क्रमांक)
+* **5. Amount** (रक्कम)
+* **6. Refund Details** (परत केलेल्या रकमा - महिनावार)
+
+---
+
+### **Namuna 21: Petty Cash Book**
+
+**(नमुना २१: किरकोळ रक्कमेचे कॅशबुक)**
+*For small daily expenses.*
+
+* **Receipts:** Date, Voucher No, Received From, Particulars, Amount.
+* **Payments:** Date, Paid To, Particulars, Amount Paid, Total.
+
+*(Note: Namuna 22 is missing from the provided pages).*
+
+---
+
+### **Namuna 23: Register of Work Estimates**
+
+**(नमुना २३: कामाच्या अंदाजपत्रकाचे नोंदणीपुस्तक)**
+*Tracks construction project budgets.*
+
+* **1. Serial No.** (क्रमांक)
+* **2. Work Title** (कामाचे शीर्षक)
+* **3. Sanctioning Authority** (मंजूर करणारे प्राधिकारी)
+* **4. Date of Sanction** (मंजुरी तारीख)
+* **5. Estimated Cost** (अंदाजपत्रकीय रक्कम - दर / परिमाण / रक्कम)
+* **6. Remarks** (शेरा)
+
+---
+
+### **Namuna 24: Monthly Salary Bill**
+
+**(नमुना २४: नोकरवर्गाच्या मासिक पगाराच्या बिलाबाबतचे पुस्तक)**
+*Calculates monthly payout for staff.*
+
+* **1. Name** (नाव)
+* **2. Designation** (पद)
+* **3. Earnings** (मूळ पगार / भत्ते)
+* **4. Deductions** (कपात)
+* **5. Net Pay** (निव्वळ बेरीज)
+* **6. Signature** (सही)
+
+---
+
+### **Namuna 25: Register of Immovable Property**
+
+**(नमुना २५: स्थावर मालमत्तेचे नोंदणीपुस्तक)**
+*Inventory of buildings and lands.*
+
+* **1. Acquisition** (मालमत्तेचे संपादन - तारीख / खर्च)
+* **2. Description** (वर्णन - क्षेत्रफळ / ठिकाण)
+* **3. Valuation** (मूल्यमापन - मूळ खर्च / घसारा / सध्याची किंमत)
+* **4. Disposal** (विल्हेवाट)
+
+---
+
+### **Namuna 26: Register of Roads**
+
+**(नमुना २६: रस्त्यांचे नोंदणीपुस्तक)**
+*Inventory of village roads.*
+
+* **1. Road Name** (रस्त्याचे नाव)
+* **2. Start/End Point** (पासून / पर्यंत)
+* **3. Length** (लांबी)
+* **4. Surface Type** (प्रकार - माती/खडी)
+* **5. Construction Cost** (बांधणीचा खर्च)
+
+---
+
+### **Namuna 27: Register of Land Acquired**
+
+**(नमुना २७: जमिनीचे नोंदणीपुस्तक)**
+*Lands acquired for public purpose.*
+
+* **1. Acquisition Date** (संपादनाची तारीख)
+* **2. Purpose** (कोणत्या हेतूसाठी)
+* **3. Acquired From** (कोणाकडून)
+* **4. Area** (क्षेत्र)
+* **5. Compensation** (नुकसान भरपाई)
+
+---
+
+### **Investment Registers**
+
+*Tracks financial investments made by the Panchayat.*
+
+* **Part 1: Shares (भाग एक - शेअर्स):** Society Name, Year, Share Details, Purchase Price.
+* **Part 2: Loan Bonds (भाग दोन - कर्ज रोखे):** Type, Purchase Date, Certificate No, Interest Rate, Face Value.
+* **Withdrawals:** Date, Reason, Sale Price, Net Balance.

@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GP System - Complete Interconnections</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: #f8f9fa;
+            padding: 20px 40px;
+            border-bottom: 3px solid #667eea;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            padding: 10px 18px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid #667eea;
+            font-size: 0.85em;
+        }
+
+        .nav-links a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .nav-links a.highlight {
+            background: #ff6b6b;
+            color: white;
+            border-color: #ff6b6b;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .diagram-section {
+            margin-bottom: 60px;
+            scroll-margin-top: 100px;
+        }
+
+        .diagram-section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .diagram-section p {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .diagram-wrapper {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+
+        .diagram-wrapper.large {
+            padding: 40px;
+            background: white;
+            border: 2px solid #e0e0e0;
+        }
+
+        .mermaid {
+            text-align: center;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-left: 5px solid #ffd700;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box h3 {
+            color: #856404;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .highlight-box.critical {
+            background: linear-gradient(135deg, #ffe8e8 0%, #ffcccb 100%);
+            border-left-color: #ff6b6b;
+        }
+
+        .highlight-box.critical h3 {
+            color: #c92a2a;
+        }
+
+        .integration-list {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .integration-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .integration-list li {
+            padding: 10px;
+            margin: 5px 0;
+            background: white;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+        }
+
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🔗 Gram Panchayat System</h1>
+            <p class="subtitle">Complete Interconnections - Every Connection Mapped</p>
+        </header>
+
+        <nav>
+            <div class="nav-links">
+                <a href="#master" class="highlight">🌟 Master Map</a>
+                <a href="#core">Core Connections</a>
+                <a href="#revenue-fin">Revenue→Financial</a>
+                <a href="#ops-fin">Operations→Financial</a>
+                <a href="#projects">Projects→Ops→Assets</a>
+                <a href="#cashbook">💰 Cashbook Hub</a>
+                <a href="#flows">Transaction Flows</a>
+                <a href="#rules">Integration Rules</a>
+            </div>
+        </nav>
+
+        <div class="content">
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Total Relationships</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">40+</div>
+                    <div class="stat-label">Core Connections</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Cross-Module Links</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Hub Tables</div>
+                </div>
+            </div>
+
+            <div class="highlight-box critical">
+                <h3>⚡ Critical Integration Point: CASHBOOK (Namuna 5)</h3>
+                <p><strong>Every financial transaction from all modules MUST flow through the Cashbook!</strong> This is
+                    the single source of truth for all money movements in the Gram Panchayat.</p>
+            </div>
+
+            <!-- Master Interconnection Map -->
+            <div id="master" class="diagram-section">
+                <h2>🌟 Master Interconnection Map</h2>
+                <p>Complete view showing how Core Infrastructure connects to ALL modules.</p>
+                <div class="diagram-wrapper large">
+                    <div class="mermaid">
+                        graph TB
+                        subgraph CORE["CORE INFRASTRUCTURE - 6 Tables"]
+                        GP[(Gram Panchayats)]
+                        FY[(Financial Years)]
+                        USERS[(Users)]
+                        AUDIT[(Audit Logs)]
+                        DOCS[(Documents)]
+                        CONFIG[(Configurations)]
+                        end
+
+                        subgraph FINANCIAL["FINANCIAL - 10 Tables"]
+                        F1[Budgets]
+                        F2[Budget Items]
+                        F3[Cashbook<br />⭐ HUB]
+                        F4[Classified<br />Accounts]
+                        F5[Annual<br />Accounts]
+                        end
+
+                        subgraph REVENUE["REVENUE - 10 Tables"]
+                        R1[Receipts]
+                        R2[Property<br />Assessment]
+                        R3[Tax<br />Demands]
+                        R4[Tax<br />Bills]
+                        R5[Misc<br />Demands]
+                        end
+
+                        subgraph OPERATIONS["OPERATIONS - 9 Tables"]
+                        O1[Purchases]
+                        O2[Employees]
+                        O3[Salary<br />Payments]
+                        O4[Petty<br />Cash]
+                        end
+
+                        subgraph ASSETS["ASSETS - 4 Tables"]
+                        A1[Movable<br />Assets]
+                        A2[Immovable<br />Property]
+                        A3[Roads]
+                        A4[Lands]
+                        end
+
+                        subgraph PROJECTS["PROJECTS - 2 Tables"]
+                        P1[Work<br />Estimates]
+                        end
+
+                        subgraph INVESTMENTS["INVESTMENTS - 3 Tables"]
+                        I1[Investments]
+                        I2[Deposits &<br />Loans]
+                        end
+
+                        %% Core to All
+                        GP ==>|gram_panchayat_id| F1
+                        GP ==>|gram_panchayat_id| F3
+                        GP ==>|gram_panchayat_id| R1
+                        GP ==>|gram_panchayat_id| R2
+                        GP ==>|gram_panchayat_id| O1
+                        GP ==>|gram_panchayat_id| O2
+                        GP ==>|gram_panchayat_id| A1
+                        GP ==>|gram_panchayat_id| A2
+                        GP ==>|gram_panchayat_id| P1
+                        GP ==>|gram_panchayat_id| I1
+
+                        FY ==>|financial_year_id| F1
+                        FY ==>|financial_year_id| F3
+                        FY ==>|financial_year_id| R3
+
+                        USERS ==>|created_by| F1
+                        USERS ==>|issued_by| R1
+                        USERS ==>|processed_by| O3
+
+                        %% Critical Cashbook Hub
+                        R1 -.->|ALL RECEIPTS| F3
+                        O1 -.->|PAYMENTS| F3
+                        O3 -.->|SALARIES| F3
+                        O4 -.->|PETTY CASH| F3
+                        I1 -.->|TRANSACTIONS| F3
+                        I2 -.->|LOANS/REFUNDS| F3
+
+                        F3 -->|feeds| F4
+                        F3 -->|feeds| F5
+
+                        %% Cross-module
+                        R2 -->|generates| R3
+                        R3 -->|creates| R4
+                        R4 -.->|payment| R1
+
+                        P1 -.->|triggers| O1
+                        O1 -.->|creates| A1
+                        O1 -.->|creates| A2
+
+                        O2 -->|monthly| O3
+
+                        AUDIT -.->|logs all| FINANCIAL
+                        AUDIT -.->|logs all| REVENUE
+                        AUDIT -.->|logs all| OPERATIONS
+
+                        classDef coreStyle fill:#667eea,stroke:#333,stroke-width:4px,color:#fff
+                        classDef hubStyle fill:#ffd700,stroke:#ff6b6b,stroke-width:4px,color:#000
+                        classDef finStyle fill:#48bb78,stroke:#333,stroke-width:2px
+                        classDef revStyle fill:#f6ad55,stroke:#333,stroke-width:2px
+                        classDef opsStyle fill:#4299e1,stroke:#333,stroke-width:2px
+                        classDef assetStyle fill:#9f7aea,stroke:#333,stroke-width:2px
+                        classDef projStyle fill:#ed64a6,stroke:#333,stroke-width:2px
+                        classDef invStyle fill:#38b2ac,stroke:#333,stroke-width:2px
+
+                        class GP,FY,USERS,AUDIT coreStyle
+                        class F3 hubStyle
+                        class F1,F2,F4,F5 finStyle
+                        class R1,R2,R3,R4,R5 revStyle
+                        class O1,O2,O3,O4 opsStyle
+                        class A1,A2,A3,A4 assetStyle
+                        class P1 projStyle
+                        class I1,I2 invStyle
+                    </div>
+                </div>
+            </div>
+
+            <!-- Revenue to Financial -->
+            <div id="revenue-fin" class="diagram-section">
+                <h2>💵 Revenue → Financial Integration</h2>
+                <p>Shows how tax collection and receipts flow into the financial system.</p>
+                <div class="diagram-wrapper">
+                    <div class="mermaid">
+                        graph TB
+                        subgraph REV["REVENUE COLLECTION"]
+                        PROP[Property Assessment<br />Namuna 8]
+                        DEM[Tax Demand<br />Namuna 9]
+                        BILL[Tax Bill<br />Namuna 10]
+                        REC[Receipt<br />Namuna 7]
+                        MISC[Misc Demands<br />Namuna 11]
+                        OCT[Octroi<br />Namunas 12-13]
+                        end
+
+                        subgraph FIN["FINANCIAL MANAGEMENT"]
+                        CASH[⭐ CASHBOOK<br />Namuna 5]
+                        CLASS[Classified Accounts<br />Namuna 6]
+                        ANNUAL[Annual Receipts<br />Namuna 3]
+                        end
+
+                        PROP -->|1. Creates| DEM
+                        DEM -->|2. Generates| BILL
+                        BILL -->|3. Payment creates| REC
+                        MISC -->|Payment creates| REC
+                        OCT -->|Collection creates| REC
+
+                        REC ==>|⚡ CRITICAL<br />All receipts| CASH
+
+                        CASH -->|Daily entries| CLASS
+                        CASH -->|Monthly total| CLASS
+                        CASH -->|Annual total| ANNUAL
+
+                        REC -.->|Updates balance| DEM
+                        REC -.->|Marks paid| BILL
+
+                        style REC fill:#ffd700,stroke:#333,stroke-width:3px
+                        style CASH fill:#ffd700,stroke:#ff6b6b,stroke-width:4px,color:#000
+                    </div>
+                </div>
+
+                <div class="integration-list">
+                    <h3>🔗 Key Connections:</h3>
+                    <ul>
+                        <li><strong>Property Assessment → Demand:</strong> property_assessment_id</li>
+                        <li><strong>Demand → Bill:</strong> tax_demand_id</li>
+                        <li><strong>Bill → Receipt:</strong> receipt_id (optional reference)</li>
+                        <li><strong>Receipt → Cashbook:</strong> receipt_id + amount + date</li>
+                        <li><strong>Cashbook → Classified:</strong> Auto-calculated daily/monthly totals</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Operations to Financial -->
+            <div id="ops-fin" class="diagram-section">
+                <h2>🏢 Operations → Financial Integration</h2>
+                <p>Shows how purchases, salaries, and petty cash flow into financial records.</p>
+                <div class="diagram-wrapper">
+                    <div class="mermaid">
+                        graph TB
+                        subgraph OPS["OPERATIONS"]
+                        PURCH[Purchases<br />Namuna 15]
+                        EMP[Employees<br />Namuna 16]
+                        SAL[Salary Payments<br />Namuna 24]
+                        PETTY[Petty Cash<br />Namuna 21]
+                        end
+
+                        subgraph FIN["FINANCIAL"]
+                        CASH[⭐ CASHBOOK<br />Namuna 5]
+                        CLASS[Classified Accounts<br />Namuna 6]
+                        ANNUAL[Annual Expenditure<br />Namuna 4]
+                        BUDGET[Budget<br />Namuna 1]
+                        end
+
+                        subgraph ASSETS["ASSETS"]
+                        MOV[Movable Assets<br />Namuna 19]
+                        IMM[Immovable<br />Namuna 25]
+                        end
+
+                        EMP -->|Monthly| SAL
+
+                        PURCH ==>|⚡ Payment| CASH
+                        SAL ==>|⚡ Payment| CASH
+                        PETTY ==>|⚡ Transactions| CASH
+
+                        PURCH -.->|If capital| MOV
+                        PURCH -.->|If property| IMM
+
+                        CASH -->|Expenditure head| CLASS
+                        CASH -->|Annual accumulation| ANNUAL
+                        CASH -.->|Check availability| BUDGET
+
+                        style PURCH fill:#ff6b6b,stroke:#333,stroke-width:3px
+                        style SAL fill:#ff6b6b,stroke:#333,stroke-width:3px
+                        style CASH fill:#ffd700,stroke:#ff6b6b,stroke-width:4px,color:#000
+                    </div>
+                </div>
+
+                <div class="integration-list">
+                    <h3>🔗 Key Connections:</h3>
+                    <ul>
+                        <li><strong>Employee → Salary:</strong> employee_id</li>
+                        <li><strong>Purchase → Cashbook:</strong> purchase_id + amount + payment_date</li>
+                        <li><strong>Salary → Cashbook:</strong> salary_id + net_salary + payment_date</li>
+                        <li><strong>Purchase → Asset:</strong> purchase_id (if capital expenditure)</li>
+                        <li><strong>Cashbook → Budget:</strong> Validation against budget head availability</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Projects Chain -->
+            <div id="projects" class="diagram-section">
+                <h2>🔨 Projects → Operations → Assets → Financial Chain</h2>
+                <p>The complete flow from project planning to asset creation and payment.</p>
+                <div class="diagram-wrapper">
+                    <div class="mermaid">
+                        graph LR
+                        subgraph PROJ["PROJECTS"]
+                        WORK[Work Estimates<br />Namuna 23]
+                        ITEMS[Work Items]
+                        end
+
+                        subgraph OPS["OPERATIONS"]
+                        PURCH[Purchases<br />Namuna 15]
+                        end
+
+                        subgraph ASSETS["ASSETS"]
+                        MOV[Movable<br />Assets]
+                        IMM[Immovable<br />Property]
+                        ROAD[Roads]
+                        end
+
+                        subgraph FIN["FINANCIAL"]
+                        CASH[⭐ CASHBOOK]
+                        BUDGET[Budget]
+                        end
+
+                        WORK -->|Contains| ITEMS
+                        WORK -.->|Generates| PURCH
+
+                        PURCH -->|If equipment| MOV
+                        PURCH -->|If building| IMM
+                        PURCH -->|If road work| ROAD
+
+                        PURCH ==>|Payment| CASH
+
+                        WORK -.->|Estimated cost| BUDGET
+                        CASH -.->|Actual vs planned| BUDGET
+
+                        MOV -.->|Reference| PURCH
+                        IMM -.->|Reference| PURCH
+                        ROAD -.->|Reference| WORK
+
+                        style WORK fill:#ed64a6,stroke:#333,stroke-width:3px
+                        style PURCH fill:#4299e1,stroke:#333,stroke-width:3px
+                        style CASH fill:#ffd700,stroke:#ff6b6b,stroke-width:4px,color:#000
+                    </div>
+                </div>
+
+                <div class="integration-list">
+                    <h3>🔗 Complete Chain:</h3>
+                    <ul>
+                        <li><strong>Step 1:</strong> Create Work Estimate (Namuna 23)</li>
+                        <li><strong>Step 2:</strong> Generate Purchase Order (Namuna 15)</li>
+                        <li><strong>Step 3:</strong> Create Asset Entry (if capital - Namuna 19/25/26)</li>
+                        <li><strong>Step 4:</strong> Record Payment in Cashbook (Namuna 5)</li>
+                        <li><strong>Step 5:</strong> Update Classified Accounts (Namuna 6)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Cashbook Hub -->
+            <div id="cashbook" class="diagram-section">
+                <h2>💰 Cashbook - The Central Integration Hub</h2>
+                <p>All financial transactions from every module converge here.</p>
+                <div class="diagram-wrapper large">
+                    <div class="mermaid">
+                        graph TB
+                        subgraph INCOME["📥 INCOME SOURCES"]
+                        REC[Receipts<br />Namuna 7]
+                        TAX[Property Tax<br />Namunas 8-10]
+                        MISC[Misc Demands<br />Namuna 11]
+                        OCT[Octroi<br />Namunas 12-13]
+                        INV_IN[Investment Returns]
+                        DEP_IN[Deposit Received]
+                        end
+
+                        CASHBOOK[⭐⭐⭐<br />CASHBOOK<br />Namuna 5<br />⭐⭐⭐]
+
+                        subgraph EXPENDITURE["📤 EXPENDITURE SOURCES"]
+                        PURCH[Purchases<br />Namuna 15]
+                        SAL[Salaries<br />Namuna 24]
+                        PETTY[Petty Cash<br />Namuna 21]
+                        INV_OUT[Investment Purchase]
+                        DEP_OUT[Deposit Refund]
+                        end
+
+                        subgraph OUTPUT["📊 OUTPUT"]
+                        CLASS[Classified Accounts<br />Namuna 6<br />Daily/Monthly]
+                        ANNUAL_R[Annual Receipts<br />Namuna 3]
+                        ANNUAL_E[Annual Expenditure<br />Namuna 4]
+                        BUDGET[Budget Comparison<br />Namuna 1]
+                        end
+
+                        REC ==>|Receipt| CASHBOOK
+                        TAX ==>|Tax Payment| CASHBOOK
+                        MISC ==>|Payment| CASHBOOK
+                        OCT ==>|Collection| CASHBOOK
+                        INV_IN ==>|Returns| CASHBOOK
+                        DEP_IN ==>|Deposit| CASHBOOK
+
+                        CASHBOOK ==>|Payment| PURCH
+                        CASHBOOK ==>|Payment| SAL
+                        CASHBOOK ==>|Transaction| PETTY
+                        CASHBOOK ==>|Payment| INV_OUT
+                        CASHBOOK ==>|Refund| DEP_OUT
+
+                        CASHBOOK -->|Daily| CLASS
+                        CASHBOOK -->|Monthly| CLASS
+                        CASHBOOK -->|Year-end| ANNUAL_R
+                        CASHBOOK -->|Year-end| ANNUAL_E
+                        CASHBOOK -.->|Actual data| BUDGET
+
+                        style CASHBOOK fill:#ffd700,stroke:#ff6b6b,stroke-width:6px,color:#000,font-size:18px
+                    </div>
+                </div>
+
+                <div class="highlight-box critical">
+                    <h3>⚡ Cashbook Integration Rules</h3>
+                    <p><strong>MANDATORY:</strong> Every financial transaction must create a cashbook entry with:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>✓ Gram Panchayat ID</li>
+                        <li>✓ Financial Year ID</li>
+                        <li>✓ Transaction Date</li>
+                        <li>✓ Transaction Type (Receipt/Payment)</li>
+                        <li>✓ Head of Account</li>
+                        <li>✓ Amount</li>
+                        <li>✓ Reference (receipt_id, purchase_id, etc.)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Transaction Flows -->
+            <div id="flows" class="diagram-section">
+                <h2>🌊 Complete Transaction Example Flows</h2>
+
+                <h3 style="color: #667eea; margin-top: 30px;">Flow 1: Tax Payment</h3>
+                <div class="diagram-wrapper">
+                    <div class="mermaid">
+                        sequenceDiagram
+                        participant User
+                        participant Property as Property Tax<br />(N8-9)
+                        participant Bill as Bill<br />(N10)
+                        participant Receipt as Receipt<br />(N7)
+                        participant Cash as Cashbook<br />(N5)
+                        participant Class as Classified<br />(N6)
+
+                        User->>Property: 1. View Property
+                        Property->>Bill: 2. Generate Bill
+                        User->>Receipt: 3. Make Payment
+
+                        rect rgb(255, 215, 0)
+                        Note over Receipt,Cash: CRITICAL INTEGRATION
+                        Receipt->>Cash: 4. Create Entry
+                        Cash->>Class: 5. Update Daily
+                        Class->>Class: 6. Update Monthly
+                        end
+
+                        Receipt->>Bill: 7. Mark Paid
+                        Receipt->>Property: 8. Reduce Balance
+                    </div>
+                </div>
+
+                <h3 style="color: #667eea; margin-top: 30px;">Flow 2: Salary Payment</h3>
+                <div class="diagram-wrapper">
+                    <div class="mermaid">
+                        sequenceDiagram
+                        participant User
+                        participant Emp as Employee<br />(N16)
+                        participant Sal as Salary<br />(N24)
+                        participant Cash as Cashbook<br />(N5)
+                        participant Budget as Budget<br />(N1)
+
+                        User->>Emp: 1. Select Employee
+                        User->>Sal: 2. Process Salary
+                        Sal->>Sal: 3. Calculate Amount
+
+                        rect rgb(255, 215, 0)
+                        Note over Sal,Cash: CRITICAL INTEGRATION
+                        Sal->>Cash: 4. Create Payment Entry
+                        Cash->>Budget: 5. Check Budget
+                        end
+
+                        alt Budget OK
+                        Cash->>Cash: Complete
+                        else Budget Exceeded
+                        Cash->>User: Alert!
+                        end
+                    </div>
+                </div>
+
+                <h3 style="color: #667eea; margin-top: 30px;">Flow 3: Purchase to Asset</h3>
+                <div class="diagram-wrapper">
+                    <div class="mermaid">
+                        sequenceDiagram
+                        participant User
+                        participant Work as Work Estimate<br />(N23)
+                        participant Purch as Purchase<br />(N15)
+                        participant Asset as Asset<br />(N19)
+                        participant Cash as Cashbook<br />(N5)
+
+                        User->>Work: 1. Create Estimate
+                        User->>Purch: 2. Create PO
+
+                        rect rgb(255, 215, 0)
+                        Note over Purch,Cash: INTEGRATION
+                        Purch->>Cash: 3. Record Payment
+                        end
+
+                        alt Capital Item
+                        Purch->>Asset: 4. Create Asset
+                        Asset->>Purch: Link purchase_id
+                        end
+                    </div>
+                </div>
+            </div>
+
+            <!-- Integration Rules -->
+            <div id="rules" class="diagram-section">
+                <h2>📋 Integration Rules & Validation</h2>
+
+                <div class="highlight-box">
+                    <h3>Rule 1: Single Source of Truth</h3>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Property master: <code>property_assessments</code></li>
+                        <li>Employee master: <code>employees</code></li>
+                        <li>Financial year master: <code>financial_years</code></li>
+                        <li>Gram Panchayat master: <code>gram_panchayats</code></li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box critical">
+                    <h3>Rule 2: Mandatory Cashbook Entry</h3>
+                    <p>EVERY financial transaction creates cashbook entry:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>✓ Receipt → Cashbook (income)</li>
+                        <li>✓ Purchase → Cashbook (expenditure)</li>
+                        <li>✓ Salary → Cashbook (expenditure)</li>
+                        <li>✓ Investment → Cashbook (income/expenditure)</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>Rule 3: Balance Updates (Atomic Transaction)</h3>
+                    <p>When receipt is created for tax bill, ALL must happen in ONE transaction:</p>
+                    <ol style="margin-left: 20px; margin-top: 10px;">
+                        <li>Create receipt record</li>
+                        <li>Create cashbook entry</li>
+                        <li>Update tax_demand.balance_amount</li>
+                        <li>Update tax_bill.payment_status</li>
+                        <li>Create audit_log entries</li>
+                    </ol>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>Rule 4: Audit Everything</h3>
+                    <p>Every INSERT/UPDATE/DELETE creates <code>audit_log</code>:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>user_id (who)</li>
+                        <li>table_name (where)</li>
+                        <li>record_id (which record)</li>
+                        <li>old_value (before - JSON)</li>
+                        <li>new_value (after - JSON)</li>
+                        <li>created_at (when)</li>
+                    </ul>
+                </div>
+
+                <div class="integration-list">
+                    <h3>✅ Validation Checklist</h3>
+                    <ul>
+                        <li>Every receipt creates exactly ONE cashbook entry</li>
+                        <li>Cashbook total = Σ receipts - Σ expenditures</li>
+                        <li>Tax demand balance = Total - Σ receipts</li>
+                        <li>Classified monthly = Σ cashbook entries for month</li>
+                        <li>Annual accounts = Σ cashbook entries for year</li>
+                        <li>Budget vs actual = Planned vs Cashbook</li>
+                        <li>Capital purchases appear in assets</li>
+                        <li>All tables have gram_panchayat_id</li>
+                        <li>All financial tables have financial_year_id</li>
+                        <li>All changes logged in audit_logs</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <footer>
+            <p><strong>Gram Panchayat Namunas System</strong> | Complete Interconnections v1.0</p>
+            <p style="margin-top: 10px; opacity: 0.8;">100+ Relationships • 5 Hub Tables • All Connections Mapped</p>
+        </footer>
+    </div>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                primaryColor: '#667eea',
+                primaryTextColor: '#fff',
+                primaryBorderColor: '#667eea',
+                lineColor: '#764ba2',
+                secondaryColor: '#f8f9fa',
+                tertiaryColor: '#fff'
+            },
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            },
+            sequence: {
+                useMaxWidth: true
+            }
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+</body>
+
+</html>
